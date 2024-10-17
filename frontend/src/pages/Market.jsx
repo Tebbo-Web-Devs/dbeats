@@ -4,12 +4,13 @@ import styles from "./Market.module.css"
 import NFTCard from "../components/NFTCard"
 
 function Market() {
+    const serverUrl = import.meta.env.VITE_SERVER_URL
     const { data, status, error } = useQuery({
         queryKey: ["nfts"],
         queryFn: async () => {
             try {
                 console.log("Fetching data for artistId:")
-                const response = await fetch(`http://localhost:3000/nft/getAll`)
+                const response = await fetch(`${serverUrl}/nft/getAll`)
                 const result = await response.json()
                 return result
             } catch (err) {

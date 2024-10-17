@@ -12,12 +12,12 @@ function NFTCard({ id, uri, price, genre }) {
     const [loading, setLoading] = useState(true)
 
     const { currentTrack, isPlaying, play, pauseTrack } = useMusic()
-
+    const serverUrl = import.meta.env.VITE_SERVER_URL
     useEffect(() => {
         async function fetchNftData() {
             try {
                 const response = await fetch(
-                    `http://localhost:3000/nft/nftMetadata?uri=${encodeURIComponent(uri)}`,
+                    `${serverUrl}/nft/nftMetadata?uri=${encodeURIComponent(uri)}`,
                 )
                 const data = await response.json()
                 setName(data.name)

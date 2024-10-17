@@ -11,7 +11,7 @@ function MyMusic() {
 
     const { address, isConnected } = useWeb3ModalAccount()
     const { fetchUser } = useUser()
-
+    const serverUrl = import.meta.env.VITE_SERVER_URL
     useEffect(() => {
         if (!isConnected || !address) return
         async function fetchNftAddresses() {
@@ -22,7 +22,7 @@ function MyMusic() {
                 for (let i = 0; i < nftAddresses.length; i++) {
                     const nftAddress = nftAddresses[i]
                     const response = await axios.post(
-                        "http://localhost:3000/nft/getOne",
+                        `${serverUrl}/nft/getOne`,
                         { nftAddress },
                     )
                     const nftData = response.data.nfts[0]

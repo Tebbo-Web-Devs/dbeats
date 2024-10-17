@@ -8,13 +8,13 @@ function ProfileCard({ id, uri , mintprice, address}) {
     const [artist, setArtist] = useState("")
     const [loading, setLoading] = useState(true)
     const [numberOfOwners, setNumberOfOwners] = useState(0)
-
+    const serverUrl = import.meta.env.VITE_SERVER_URL
 
 
     useEffect(() => {
         const fetchNftData = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/nftData?uri=${encodeURIComponent(uri)}&address=${address}`);
+                const response = await fetch(`${serverUrl}//nftData?uri=${encodeURIComponent(uri)}&address=${address}`);
                 const data = await response.json();
                 setName(data.name);
                 setImageUrl(data.image);

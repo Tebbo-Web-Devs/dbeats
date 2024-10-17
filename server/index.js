@@ -43,6 +43,10 @@ mongoose.connect(
 app.use("/user", userRouter);
 app.use("/nft", nftRouter);
 
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 app.get("/userNfts", async (req, res) => {
   const walletAddress = req.query.walletAddress.toLowerCase();
   console.log("Received wallet address:", walletAddress);

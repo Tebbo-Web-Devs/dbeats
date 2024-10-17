@@ -11,7 +11,7 @@ function Profile() {
     const { address, isConnected } = useWeb3ModalAccount()
     const { user, fetchUser, applyForArtist } = useUser()
     const navigate = useNavigate()
-
+    const serverUrl = import.meta.env.VITE_SERVER_URL
     let newAddress
 
     if (address) {
@@ -25,7 +25,7 @@ function Profile() {
                 console.log("Fetching data for artistId:", newAddress)
                 try {
                     const response = await fetch(
-                        `http://localhost:3000/userNfts?walletAddress=${newAddress}`,
+                        `${serverUrl}/userNfts?walletAddress=${newAddress}`,
                     )
                     const result = await response.json()
                     console.log("Response from server:", result)
